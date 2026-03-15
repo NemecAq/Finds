@@ -1,0 +1,1 @@
+export { OmniaPage } from './ui/OmniaPage';

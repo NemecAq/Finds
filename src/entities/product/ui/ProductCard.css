@@ -46,3 +46,18 @@
   font-size: 28px;
   color: rgba(18, 35, 93, 1);
 }
+.product-image-wrapper {
+  position: relative;
+}
+
+.product-favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
