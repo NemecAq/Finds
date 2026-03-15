@@ -1,0 +1,256 @@
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #666;
+  text-decoration: none;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.back-link:hover {
+  color: rgba(18, 35, 93, 1);
+  transform: translateX(-5px);
+}
+
+.back-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.brand-description {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.page-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+  color: #333;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.brand-about {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sort-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.sort-container {
+  position: relative;
+}
+
+.sort-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sort-button:hover {
+  border-color: rgba(18, 35, 93, 0.5);
+  color: rgba(18, 35, 93, 1);
+}
+
+.sort-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sort-current {
+  margin-left: 5px;
+  font-weight: 600;
+  color: rgba(18, 35, 93, 1);
+}
+
+.sort-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.sort-option {
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333;
+}
+
+.sort-option:hover {
+  background: #f5f5f5;
+  color: rgba(18, 35, 93, 1);
+}
+
+.sort-option.active {
+  background: rgba(18, 35, 93, 0.1);
+  color: rgba(18, 35, 93, 1);
+  font-weight: 600;
+}
+
+.products-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #888;
+}
+
+.brand-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+}
+
+.brand-product-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.brand-product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.brand-product-image {
+  width: 100%;
+  aspect-ratio: 297 / 301;
+  overflow: hidden;
+}
+
+.brand-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.brand-product-card:hover .brand-product-image img {
+  transform: scale(1.08);
+}
+
+.brand-product-info {
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.brand-product-description {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0 0 12px 0;
+  flex: 1;
+}
+
+.brand-product-price {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: rgba(18, 35, 93, 1);
+  margin: 0 0 16px 0;
+}
+
+@media (max-width: 992px) {
+  .brand-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .page-title {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-product-info {
+    padding: 20px 16px 16px;
+  }
+  
+  .brand-product-description {
+    font-size: 14px;
+  }
+  
+  .brand-product-price {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .brand-products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sort-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sort-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .sort-menu {
+    width: 100%;
+  }
+  
+  .page-title {
+    font-size: 32px;
+  }
+  
+  .brand-about {
+    font-size: 16px;
+  }
+}

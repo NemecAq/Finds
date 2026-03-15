@@ -1,0 +1,175 @@
+import React from 'react';
+import { Header } from '../../../widgets/header';
+import { Footer } from '../../../widgets/footer/ui/Footer';
+import { BrandsSlider } from '../../../widgets/brand-slider/ui';
+import { CategoryCard } from '../../../entities/category';
+import { BrandCard } from '../../../entities/brand/ui/BrandCard';
+import { ProductCard } from '../../../entities/product';
+import { useNavigate } from 'react-router-dom';
+import { Brand, Product, Category } from '../../../shared/types';
+import './MainPage.css';
+
+const categories: Category[] = [
+  { id: '1', name: 'ФУТБОЛКИ', image: '/images-main/clothes3.png' },
+  { id: '2', name: 'ЗИПКИ', image: '/images-main/clothes5.png' },
+  { id: '3', name: 'СВИТЕРЫ', image: '/images-main/clothes2.png' },
+  { id: '4', name: 'ШТАНЫ', image: '/images-main/clothes6.png' },
+  { id: '5', name: 'КУРТКИ', image: '/images-main/clothes1.png' },
+  { id: '6', name: 'АКССЕСУАРЫ', image: '/images-main/clothes4.png' }
+];
+
+const brands: Brand[] = [
+  { 
+    id: '1', 
+    name: 'KODEX', 
+    description: 'KODEX — это бренд о чистоте формы и силе контраста.', 
+    logo: '/images-main/brand1.jpg',
+    coverImage: '/images-main/brand1-cover.jpg',
+    products: []
+  },
+  { 
+    id: '2', 
+    name: 'FRAGS', 
+    description: 'FRAGS — тёмная эстетика, собранная в форму.', 
+    logo: '/images-main/brand2.jpg',
+    coverImage: '/images-main/brand2-cover.jpg',
+    products: []
+  },
+  { 
+    id: '3', 
+    name: 'OMNIA', 
+    description: 'OMNIA — это 328 × 310, которую можно надеть.', 
+    logo: '/images-main/brand3.jpg',
+    coverImage: '/images-main/brand3-cover.jpg',
+    products: []
+  }
+];
+
+const products: Product[] = [
+  { 
+    id: '1', 
+    name: 'Штаннешки', 
+    brand: 'KODEX', 
+    price: 4990, 
+    image: '/images-main/popular1.png',
+    description: 'Удобные штаны для повседневной носки',
+    category: 'ШТАНЫ'
+  },
+  { 
+    id: '2', 
+    name: 'Футболочка', 
+    brand: 'FRAGS', 
+    price: 6490, 
+    image: '/images-main/popular2.png',
+    description: 'Хлопковая футболка оверсайз',
+    category: 'ФУТБОЛКИ'
+  },
+  { 
+    id: '3', 
+    name: 'Джинсикки', 
+    brand: 'OMNIA', 
+    price: 5990, 
+    image: '/images-main/popular3.png',
+    description: 'Классические джинсы прямого кроя',
+    category: 'ШТАНЫ'
+  },
+  { 
+    id: '4', 
+    name: 'Худька', 
+    brand: 'GARM', 
+    price: 2490, 
+    image: '/images-main/popular4.png',
+    description: 'Теплое худи с капюшоном',
+    category: 'СВИТЕРЫ'
+  },
+  { 
+    id: '5', 
+    name: 'Футболка', 
+    brand: 'NOSKVA', 
+    price: 3990, 
+    image: '/images-main/popular5.png',
+    description: 'Базовая футболка из органического хлопка',
+    category: 'ФУТБОЛКИ'
+  }
+];
+
+export const MainPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <Header />
+      
+      <main className="main-content">
+        <h1 className="section-title">КАТЕГОРИИ ТОВАРОВ</h1>
+        <div className="categories-grid">
+          {categories.map(category => (
+            <CategoryCard key={category.id} category={category} />
+          ))}
+        </div>
+
+        <section className="brands-section">
+          <h2 className="section-title">Популярные бренды</h2>
+          <div className="brands-header">
+            <a 
+              href="/all-brands" 
+              className="all-brands-link" 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                navigate('/all-brands'); 
+              }}
+            >
+              все бренды →
+            </a>
+          </div>
+          <div className="brands-grid">
+            {brands.map(brand => (
+              <BrandCard 
+                key={brand.id} 
+                brand={brand} 
+                onClick={() => navigate(`/brand/${brand.id}`)}
+              />
+            ))}
+          </div>
+        </section>
+
+        <BrandsSlider 
+          images={[
+            '/images-main/featured-brand.png', 
+            '/images-main/brand1.jpg', 
+            '/images-main/brand2.jpg'
+          ]}
+          titles={[
+            'ПЕРСПЕКТИВНЫЙ БРЕНД МЕСЯЦА', 
+            'KODEX', 
+            'FRAGS'
+          ]}
+        />
+
+        <section className="popular-items-section">
+          <h2 className="section-title">ПОПУЛЯРНЫЕ ПОЗИЦИИ</h2>
+          <div className="products-grid">
+            {products.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+            <a 
+              href="/all-popular" 
+              className="more-card" 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                navigate('/all-popular'); 
+              }}
+            >
+              <div className="more-content">
+                <span className="more-word">ЕЩЕ</span>
+                <span className="more-arrow">→</span>
+              </div>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </>
+  );
+};

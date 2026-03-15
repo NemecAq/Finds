@@ -1,0 +1,19 @@
+.add-to-cart-btn {
+  display: flex;
+  align-items: bottom;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: bottom;
+}
+
+.add-to-cart-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+  transition: transform 0.3s ease;
+}
+
+.add-to-cart-btn:hover svg {
+  transform: translateX(3px);
+}

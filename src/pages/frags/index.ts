@@ -1,0 +1,1 @@
+export { FragsPage } from './ui/FragsPage';
