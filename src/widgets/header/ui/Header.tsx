@@ -18,7 +18,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ 
   title = 'FINDS', 
   subtitle = 'Место, где начинаются новые открытия',
-  backgroundImage = '/images/header-img.png',
+  backgroundImage = '/images-main/header-img.png',
   showOverlay = true
 }) => {
   const navigate = useNavigate();
