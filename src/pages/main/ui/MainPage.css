@@ -70,7 +70,27 @@
 .popular-items-section {
   margin-top: 80px;
 }
+.categories-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
+.all-categories-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.all-categories-link:hover {
+  color: rgba(18, 35, 93, 1);
+}
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

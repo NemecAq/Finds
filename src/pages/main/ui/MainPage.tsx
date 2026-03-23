@@ -48,7 +48,7 @@ const brands: Brand[] = [
 const products: Product[] = [
   { 
     id: '1', 
-    name: 'Штаннешки', 
+    name: 'Штаны', 
     brand: 'KODEX', 
     price: 4990, 
     image: '/images-main/popular1.png',
@@ -57,7 +57,7 @@ const products: Product[] = [
   },
   { 
     id: '2', 
-    name: 'Футболочка', 
+    name: 'Футболка', 
     brand: 'FRAGS', 
     price: 6490, 
     image: '/images-main/popular2.png',
@@ -66,7 +66,7 @@ const products: Product[] = [
   },
   { 
     id: '3', 
-    name: 'Джинсикки', 
+    name: 'Джинсы', 
     brand: 'OMNIA', 
     price: 5990, 
     image: '/images-main/popular3.png',
@@ -75,7 +75,7 @@ const products: Product[] = [
   },
   { 
     id: '4', 
-    name: 'Худька', 
+    name: 'Худи', 
     brand: 'GARM', 
     price: 2490, 
     image: '/images-main/popular4.png',
@@ -96,6 +96,49 @@ const products: Product[] = [
 export const MainPage: React.FC = () => {
   const navigate = useNavigate();
 
+  const handleCategoryClick = (category: Category) => {
+    let categorySlug = '';
+    switch(category.name) {
+      case 'ФУТБОЛКИ':
+        categorySlug = 'futbolki';
+        break;
+      case 'ЗИПКИ':
+        categorySlug = 'zipki';
+        break;
+      case 'СВИТЕРЫ':
+        categorySlug = 'svitery';
+        break;
+      case 'ШТАНЫ':
+        categorySlug = 'shtany';
+        break;
+      case 'КУРТКИ':
+        categorySlug = 'kurtki';
+        break;
+      case 'АКССЕСУАРЫ':
+        categorySlug = 'aksessuary';
+        break;
+      default:
+        categorySlug = category.name.toLowerCase();
+    }
+    navigate(`/category/${categorySlug}`);
+  };
+
+  const handleBrandClick = (brand: Brand) => {
+    switch(brand.name) {
+      case 'KODEX':
+        navigate('/brand/kodex');
+        break;
+      case 'FRAGS':
+        navigate('/brand/frags');
+        break;
+      case 'OMNIA':
+        navigate('/brand/omnia');
+        break;
+      default:
+        navigate(`/brand/${brand.name.toLowerCase()}`);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -104,7 +147,11 @@ export const MainPage: React.FC = () => {
         <h1 className="section-title">КАТЕГОРИИ ТОВАРОВ</h1>
         <div className="categories-grid">
           {categories.map(category => (
-            <CategoryCard key={category.id} category={category} />
+            <CategoryCard 
+              key={category.id} 
+              category={category} 
+              onClick={() => handleCategoryClick(category)}
+            />
           ))}
         </div>
 
@@ -127,7 +174,7 @@ export const MainPage: React.FC = () => {
               <BrandCard 
                 key={brand.id} 
                 brand={brand} 
-                onClick={() => navigate(`/brand/${brand.id}`)}
+                onClick={() => handleBrandClick(brand)}
               />
             ))}
           </div>

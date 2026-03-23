@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Header } from '../../../widgets/header';
 import { Footer } from '../../../widgets/footer/ui/Footer';
 import { AddToCartButton } from '../../../features/add-to-cart/ui/AddToCartButton';
+import { FavoriteButton } from '../../../features/add-to-favorites/FavoriteButton';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../../shared/types';
 import './FragsPage.css';
@@ -51,43 +52,7 @@ const fragsProducts: Product[] = [
     image: '/images-main/frags-product5.jpg',
     description: 'Удобные шорты из плотного хлопка. Два боковых кармана.',
     category: 'ШТАНЫ'
-  },
-  { 
-    id: 'f6', 
-    name: 'Кепка FRAGS', 
-    brand: 'FRAGS', 
-    price: 2990, 
-    image: '/images-main/frags-product.jpg',
-    description: '',
-    category: ''
-  },
-  { 
-    id: 'f7', 
-    name: 'Кепка FRAGS', 
-    brand: 'FRAGS', 
-    price: 2990, 
-    image: '/images-main/frags-product.jpg',
-    description: '',
-    category: ''
-  },
-  { 
-    id: 'f8', 
-    name: 'Кепка FRAGS', 
-    brand: 'FRAGS', 
-    price: 2990, 
-    image: '/images-main/frags-product.jpg',
-    description: '.',
-    category: ''
-  },
-  { 
-    id: '9', 
-    name: '', 
-    brand: 'FRAGS', 
-    price: 2990, 
-    image: '/images-main/frags-product.jpg',
-    description: '',
-    category: ''
-  },
+  }
 ];
 
 export const FragsPage: React.FC = () => {
@@ -115,8 +80,8 @@ export const FragsPage: React.FC = () => {
       <Header 
         title="FRAGS" 
         subtitle="" 
-        backgroundImage="/images/frags-header.jpg"
-       
+        backgroundImage="/images-main/frags-header.jpg"
+        showOverlay={false} 
       />
       
       <main className="main-content">
@@ -134,7 +99,10 @@ export const FragsPage: React.FC = () => {
           Назад к брендам
         </a>
 
-       
+        <div className="brand-description">
+          <h1 className="page-title">FRAGS</h1>
+          <p className="brand-about">FRAGS — тёмная эстетика, собранная в форму. Это одежда для тех, кто говорит за себя без слов.</p>
+        </div>
 
         <div className="sort-section">
           <div className="sort-container">
@@ -143,7 +111,7 @@ export const FragsPage: React.FC = () => {
               onClick={() => setShowSortMenu(!showSortMenu)}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L3.5 11.293V2.5zm5 0a.5.5 0 0 1 1 0v8.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L8.5 11.293V2.5zm5 0a.5.5 0 0 1 1 0v8.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L13.5 11.293V2.5z"/>
+                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L3.5 11.293V2.5zm5 0a.5.5 0 0 1 1 0v8.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L8.5 11.293V2.5z"/>
               </svg>
               Сортировка
               <span className="sort-current">
@@ -211,8 +179,11 @@ export const FragsPage: React.FC = () => {
         <div className="brand-products-grid">
           {sortedProducts.map(product => (
             <div key={product.id} className="brand-product-card">
-              <div className="brand-product-image">
-                <img src={product.image} alt={product.name} />
+              <div className="brand-product-image-wrapper">
+                <FavoriteButton product={product} className="product-favorite-btn" />
+                <div className="brand-product-image">
+                  <img src={product.image} alt={product.name} />
+                </div>
               </div>
               <div className="brand-product-info">
                 <p className="brand-product-description">{product.description}</p>
