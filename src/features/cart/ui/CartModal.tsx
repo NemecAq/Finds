@@ -1,6 +1,6 @@
 import React from 'react';
-import { useCart } from '../../../app/providers/CartProvider';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../../app/providers/CartProvider';
 import './CartModal.css';
 
 interface CartModalProps {

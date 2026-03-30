@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../../../shared/ui/card/Card';
 import { Product } from '../../../shared/types';
 import { FavoriteButton } from '../../../features/add-to-favorites/FavoriteButton';
@@ -6,12 +7,17 @@ import './ProductCard.css';
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart?: (product: Product) => void;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/product/${product.id}`);
+  };
+
   return (
-    <Card className="product-card">
+    <Card className="product-card" onClick={handleClick}>
       <div className="product-image-wrapper">
         <FavoriteButton product={product} className="product-favorite-btn" />
         <div className="product-image">

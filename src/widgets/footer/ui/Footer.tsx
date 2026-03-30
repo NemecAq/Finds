@@ -1,9 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Footer.css';
 
 export const Footer: React.FC = () => {
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
-  
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="site-footer">
       <div className="footer-container">
@@ -28,17 +35,19 @@ export const Footer: React.FC = () => {
         <div className="footer-section">
           <h3 className="footer-title">Социальные сети</h3>
           <div className="social-links">
-            <a href="#" className="social-link">VK</a>
+            <a href="https://vk.com" className="social-link" target="_blank" rel="noopener noreferrer">VK</a>
+            <a href="https://t.me" className="social-link" target="_blank" rel="noopener noreferrer">Telegram</a>
+
           </div>
         </div>
         
         <div className="footer-section">
           <h3 className="footer-title">Информация</h3>
           <ul className="footer-links">
-            <li><a href="#" className="footer-link">О нас</a></li>
-            <li><a href="#" className="footer-link">Доставка</a></li>
-            <li><a href="#" className="footer-link">Оплата</a></li>
-            <li><a href="#" className="footer-link">Возврат</a></li>
+            <li><button className="footer-link" onClick={() => handleNavigation('/')}>Главная</button></li>
+            <li><button className="footer-link" onClick={() => handleNavigation('/category/all')}>Каталог</button></li>
+            <li><button className="footer-link" onClick={() => handleNavigation('/all-brands')}>Бренды</button></li>
+            <li><button className="footer-link" onClick={() => handleNavigation('/profile')}>Личный кабинет</button></li>
           </ul>
         </div>
       </div>

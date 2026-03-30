@@ -1,17 +1,22 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { authApi, LoginRequest, RegisterRequest } from '../../shared/api/auth';
+import { userApi } from '../../shared/api/user';
+import { apiClient } from '../../shared/api/apiClient';
 
 interface User {
   id: string;
   name: string;
   email: string;
   avatar?: string;
+  roles: string[];
 }
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
+  loading: boolean;
   login: (email: string, password: string) => Promise<boolean>;
-  logout: () => void;
+  logout: () => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<boolean>;
 }
 
@@ -27,56 +32,86 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
+    const loadUser = async () => {
+      const token = apiClient.getToken();
+      if (token) {
+        try {
+          const profile = await userApi.getProfile();
+          setUser({
+            id: profile.id,
+            name: profile.name,
+            email: profile.email,
+            roles: profile.roles,
+          });
+        } catch (error) {
+          console.error('Failed to load user:', error);
+          apiClient.clearToken();
+        }
+      }
+      setLoading(false);
+    };
+    loadUser();
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    // Здесь должен быть API запрос
-   
-    if (email && password) {
-      const mockUser = {
-        id: '1',
-        name: email.split('@')[0],
-        email: email,
-        avatar: '/images/default-avatar.jpg'
-      };
-      setUser(mockUser);
-      localStorage.setItem('user', JSON.stringify(mockUser));
+    try {
+      const response = await authApi.login({ email, password });
+      apiClient.setToken(response.token);
+      setUser(response.user);
       return true;
+    } catch (error) {
+      console.error('Login failed:', error);
+      return false;
     }
-    return false;
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
+  const logout = async () => {
+    try {
+      await authApi.logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      apiClient.clearToken();
+      setUser(null);
+    }
   };
 
   const register = async (name: string, email: string, password: string): Promise<boolean> => {
-    // Здесь должен быть API запрос
-    if (name && email && password) {
-      const mockUser = {
-        id: Date.now().toString(),
-        name: name,
-        email: email,
-        avatar: '/images/default-avatar.jpg'
-      };
-      setUser(mockUser);
-      localStorage.setItem('user', JSON.stringify(mockUser));
+    try {
+      const response = await authApi.register({ name, email, password });
+      apiClient.setToken(response.token);
+      setUser(response.user);
       return true;
+    } catch (error) {
+      console.error('Registration failed:', error);
+      return false;
     }
-    return false;
   };
+
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '18px',
+        color: '#333'
+      }}>
+        Загрузка...
+      </div>
+    );
+  }
 
   return (
     <AuthContext.Provider value={{
       user,
       isAuthenticated: !!user,
+      loading,
       login,
       logout,
       register

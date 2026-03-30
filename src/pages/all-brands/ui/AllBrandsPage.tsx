@@ -33,17 +33,17 @@ const allBrands: Brand[] = [
   },
   { 
     id: '4', 
-    name: 'GARM', 
-    description: 'GARM — уличная культура и комфорт.', 
-    logo: '/images-main/brand4.jpg',
+    name: 'KUROTOSHIRA', 
+    description: 'Ручная работа по индивидуальным замерам', 
+    logo: '/images-main/KUROTOSHIRA.jpg',
     coverImage: '/images-main/brand4-cover.jpg',
     products: []
   },
   { 
     id: '5', 
-    name: 'NOSKVA', 
-    description: 'NOSKVA — современная классика с элементами авангарда.', 
-    logo: '/images-main/brand5.jpg',
+    name: 'GARMENTS MOSCOW', 
+    description: 'GARMENTS MOSCOW — современная классика с элементами авангарда.', 
+    logo: '/images-main/GM.jpg',
     coverImage: '/images-main/brand5-cover.jpg',
     products: []
   },

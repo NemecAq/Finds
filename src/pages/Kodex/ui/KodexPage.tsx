@@ -2,93 +2,12 @@ import React, { useState } from 'react';
 import { Header } from '../../../widgets/header';
 import { Footer } from '../../../widgets/footer/ui/Footer';
 import { AddToCartButton } from '../../../features/add-to-cart/ui/AddToCartButton';
+import { FavoriteButton } from '../../../features/add-to-favorites/FavoriteButton';
 import { useNavigate } from 'react-router-dom';
-import { Product } from '../../../shared/types';
+import { allProducts } from '../../../shared/data/products';
 import './KodexPage.css';
 
-const kodexProducts: Product[] = [
-  { 
-    id: 'k1', 
-    name: 'Футболка KODEX', 
-    brand: 'KODEX', 
-    price: 4990, 
-    image: '/images-main/kodex-product1.png',
-    description: 'Футболка Slim-fit HRTGBURGUNDY',
-    category: 'ФУТБОЛКИ'
-  },
-  { 
-    id: 'k2', 
-    name: 'Худи KODEX', 
-    brand: 'KODEX', 
-    price: 6950, 
-    image: '/images-main/kodex-product2.png',
-    description: 'Tолстовка с начесом',
-    category: 'ТОЛСТОВКИ'
-  },
-  { 
-    id: 'k3', 
-    name: 'Брюки KODEX', 
-    brand: 'KODEX', 
-    price: 8500, 
-    image: '/images-main/kodex-product3.png',
-    description: 'Джинсы BAGGY Grunge',
-    category: 'ШТАНЫ'
-  },
-  { 
-    id: 'k4', 
-    name: 'Кепка KODEX', 
-    brand: 'KODEX', 
-    price: 4990, 
-    image: '/images-main/kodex-product4.png',
-    description: 'Футболка Slim-fit HRTGBURGUNDY',
-    category: 'ФУТБОЛКИ'
-  },
-  { 
-    id: 'k5', 
-    name: 'Шорты KODEX', 
-    brand: 'KODEX', 
-    price: 8500, 
-    image: '/images-main/kodex-product5.png',
-    description: 'Джинсы BAGGY GrungeBlue',
-    category: 'ШТАНЫ'
-  },
-  { 
-    id: 'k6', 
-    name: 'Шорты KODEX', 
-    brand: 'KODEX', 
-    price: 4990, 
-    image: '/images-main/kodex-product6.png',
-    description: 'Футболка Slim-fit HRTGBURGUNDY',
-    category: 'ФУТБОЛКИ'
-  },
-    { 
-    id: 'k7', 
-    name: 'Шорты KODEX', 
-    brand: 'KODEX', 
-    price: 8500, 
-    image: '/images-main/kodex-product7.png',
-    description: 'Спортивные штаны',
-    category: 'ШТАНЫ'
-  },
-    { 
-    id: 'k8', 
-    name: 'Шорты KODEX', 
-    brand: 'KODEX', 
-    price: 6950, 
-    image: '/images-main/kodex-product8.png',
-    description: 'Tолстовка с начесом',
-    category: 'ТОЛСТОВКИ'
-  },
-    { 
-    id: 'k9', 
-    name: 'Шорты KODEX', 
-    brand: 'KODEX', 
-    price: 4990, 
-    image: '/images-main/kodex-product9.png',
-    description: 'Футболка Slim-fit HRTGBURGUNDY',
-    category: 'ФУТБОЛКИ'
-  },
-];
+const kodexProducts = allProducts.filter(p => p.brand === 'KODEX');
 
 export const KodexPage: React.FC = () => {
   const navigate = useNavigate();
@@ -110,13 +29,17 @@ export const KodexPage: React.FC = () => {
     }
   });
 
+  const handleProductClick = (productId: string) => {
+    navigate(`/product/${productId}`);
+  };
+
   return (
     <>
       <Header 
         title="KODEX" 
         subtitle="" 
         backgroundImage="/images-main/kodex-header.png"
-     
+        showOverlay={false}
       />
       
       <main className="main-content">
@@ -134,8 +57,6 @@ export const KodexPage: React.FC = () => {
           Назад к брендам
         </a>
 
-        
-
         <div className="sort-section">
           <div className="sort-container">
             <button 
@@ -143,7 +64,7 @@ export const KodexPage: React.FC = () => {
               onClick={() => setShowSortMenu(!showSortMenu)}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L3.5 11.293V2.5zm5 0a.5.5 0 0 1 1 0v8.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L8.5 11.293V2.5zm5 0a.5.5 0 0 1 1 0v8.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L13.5 11.293V2.5z"/>
+                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L3.5 11.293V2.5z"/>
               </svg>
               Сортировка
               <span className="sort-current">
@@ -210,9 +131,12 @@ export const KodexPage: React.FC = () => {
 
         <div className="brand-products-grid">
           {sortedProducts.map(product => (
-            <div key={product.id} className="brand-product-card">
-              <div className="brand-product-image">
-                <img src={product.image} alt={product.name} />
+            <div key={product.id} className="brand-product-card" onClick={() => handleProductClick(product.id)}>
+              <div className="brand-product-image-wrapper">
+                <FavoriteButton product={product} className="product-favorite-btn" />
+                <div className="brand-product-image">
+                  <img src={product.image} alt={product.name} />
+                </div>
               </div>
               <div className="brand-product-info">
                 <p className="brand-product-description">{product.description}</p>

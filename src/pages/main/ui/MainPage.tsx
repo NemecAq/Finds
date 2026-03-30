@@ -6,7 +6,8 @@ import { CategoryCard } from '../../../entities/category';
 import { BrandCard } from '../../../entities/brand/ui/BrandCard';
 import { ProductCard } from '../../../entities/product';
 import { useNavigate } from 'react-router-dom';
-import { Brand, Product, Category } from '../../../shared/types';
+import { Brand, Category } from '../../../shared/types';
+import { popularProducts } from '../../../shared/data/products';
 import './MainPage.css';
 
 const categories: Category[] = [
@@ -45,56 +46,51 @@ const brands: Brand[] = [
   }
 ];
 
-const products: Product[] = [
-  { 
-    id: '1', 
-    name: 'Штаннешки', 
-    brand: 'KODEX', 
-    price: 4990, 
-    image: '/images-main/popular1.png',
-    description: 'Удобные штаны для повседневной носки',
-    category: 'ШТАНЫ'
-  },
-  { 
-    id: '2', 
-    name: 'Футболочка', 
-    brand: 'FRAGS', 
-    price: 6490, 
-    image: '/images-main/popular2.png',
-    description: 'Хлопковая футболка оверсайз',
-    category: 'ФУТБОЛКИ'
-  },
-  { 
-    id: '3', 
-    name: 'Джинсикки', 
-    brand: 'OMNIA', 
-    price: 5990, 
-    image: '/images-main/popular3.png',
-    description: 'Классические джинсы прямого кроя',
-    category: 'ШТАНЫ'
-  },
-  { 
-    id: '4', 
-    name: 'Худька', 
-    brand: 'GARM', 
-    price: 2490, 
-    image: '/images-main/popular4.png',
-    description: 'Теплое худи с капюшоном',
-    category: 'СВИТЕРЫ'
-  },
-  { 
-    id: '5', 
-    name: 'Футболка', 
-    brand: 'NOSKVA', 
-    price: 3990, 
-    image: '/images-main/popular5.png',
-    description: 'Базовая футболка из органического хлопка',
-    category: 'ФУТБОЛКИ'
-  }
-];
-
 export const MainPage: React.FC = () => {
   const navigate = useNavigate();
+
+  const handleCategoryClick = (category: Category) => {
+    let categorySlug = '';
+    switch(category.name) {
+      case 'ФУТБОЛКИ':
+        categorySlug = 'futbolki';
+        break;
+      case 'ЗИПКИ':
+        categorySlug = 'zipki';
+        break;
+      case 'СВИТЕРЫ':
+        categorySlug = 'svitery';
+        break;
+      case 'ШТАНЫ':
+        categorySlug = 'shtany';
+        break;
+      case 'КУРТКИ':
+        categorySlug = 'kurtki';
+        break;
+      case 'АКССЕСУАРЫ':
+        categorySlug = 'aksessuary';
+        break;
+      default:
+        categorySlug = category.name.toLowerCase();
+    }
+    navigate(`/category/${categorySlug}`);
+  };
+
+  const handleBrandClick = (brand: Brand) => {
+    switch(brand.name) {
+      case 'KODEX':
+        navigate('/brand/kodex');
+        break;
+      case 'FRAGS':
+        navigate('/brand/frags');
+        break;
+      case 'OMNIA':
+        navigate('/brand/omnia');
+        break;
+      default:
+        navigate(`/brand/${brand.name.toLowerCase()}`);
+    }
+  };
 
   return (
     <>
@@ -104,7 +100,11 @@ export const MainPage: React.FC = () => {
         <h1 className="section-title">КАТЕГОРИИ ТОВАРОВ</h1>
         <div className="categories-grid">
           {categories.map(category => (
-            <CategoryCard key={category.id} category={category} />
+            <CategoryCard 
+              key={category.id} 
+              category={category} 
+              onClick={() => handleCategoryClick(category)}
+            />
           ))}
         </div>
 
@@ -127,7 +127,7 @@ export const MainPage: React.FC = () => {
               <BrandCard 
                 key={brand.id} 
                 brand={brand} 
-                onClick={() => navigate(`/brand/${brand.id}`)}
+                onClick={() => handleBrandClick(brand)}
               />
             ))}
           </div>
@@ -149,15 +149,15 @@ export const MainPage: React.FC = () => {
         <section className="popular-items-section">
           <h2 className="section-title">ПОПУЛЯРНЫЕ ПОЗИЦИИ</h2>
           <div className="products-grid">
-            {products.map(product => (
+            {popularProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
             <a 
-              href="/all-popular" 
+              href="/category/all" 
               className="more-card" 
               onClick={(e) => { 
                 e.preventDefault(); 
-                navigate('/all-popular'); 
+                navigate('/category/all'); 
               }}
             >
               <div className="more-content">

@@ -22,3 +22,13 @@ export interface Category {
   name: string;
   image: string;
 }
+export interface Order {
+  id: string;
+  date: string;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  total: number;
+  items: Product[];
+  deliveryMethod: string;
+  paymentMethod: string;
+  address: string;
+}

@@ -4,9 +4,6 @@ import App from './app/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
-
-document.body.classList.add('loaded');
-
 root.render(
   <React.StrictMode>
     <App />

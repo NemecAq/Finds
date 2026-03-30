@@ -68,6 +68,7 @@
 .empty-state {
   padding: 60px 20px;
   text-align: center;
+  
 }
 
 .empty-state p {
@@ -87,6 +88,7 @@
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
+ 
 }
 
 .cart-items {

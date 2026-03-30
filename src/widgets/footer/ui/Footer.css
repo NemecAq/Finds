@@ -81,11 +81,12 @@
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   transition: opacity 0.3s ease;
-  opacity: 0.9;
+  display: inline-block;
+  width: fit-content;
 }
 
 .social-link:hover {
-  opacity: 1;
+  opacity: 0.8;
   transform: translateX(5px);
 }
 
@@ -105,11 +106,15 @@
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   transition: opacity 0.3s ease;
-  opacity: 0.9;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
 }
 
 .footer-link:hover {
-  opacity: 1;
+  opacity: 0.8;
   text-decoration: underline;
 }
 
@@ -134,9 +139,30 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .footer-container {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+  
+  .footer-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .contact-item {
+    font-size: 14px;
+  }
+  
+  .contact-link {
+    font-size: 14px;
+  }
+  
+  .social-link {
+    font-size: 14px;
+  }
+  
+  .footer-link {
+    font-size: 14px;
   }
 }

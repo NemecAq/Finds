@@ -2,93 +2,12 @@ import React, { useState } from 'react';
 import { Header } from '../../../widgets/header';
 import { Footer } from '../../../widgets/footer/ui/Footer';
 import { AddToCartButton } from '../../../features/add-to-cart/ui/AddToCartButton';
+import { FavoriteButton } from '../../../features/add-to-favorites/FavoriteButton';
 import { useNavigate } from 'react-router-dom';
-import { Product } from '../../../shared/types';
+import { allProducts } from '../../../shared/data/products';
 import './OmniaPage.css';
 
-const omniaProducts: Product[] = [
-  { 
-    id: 'o1', 
-    name: 'Футболка OMNIA', 
-    brand: 'OMNIA', 
-    price: 4290, 
-    image: '/images/omnia-product1.jpg',
-    description: 'Футболка оверсайз из 100% хлопка. Принт на спине, усиленные швы. Идеальный выбор для повседневного образа.',
-    category: 'ФУТБОЛКИ'
-  },
-  { 
-    id: 'o2', 
-    name: 'Свитшот OMNIA', 
-    brand: 'OMNIA', 
-    price: 5790, 
-    image: '/images/omnia-product2.jpg',
-    description: 'Теплый свитшот с начесом. Вышивка логотипа на груди. Мягкий и уютный, сохраняет тепло.',
-    category: 'СВИТЕРЫ'
-  },
-  { 
-    id: 'o3', 
-    name: 'Шорты OMNIA', 
-    brand: 'OMNIA', 
-    price: 3490, 
-    image: '/images/omnia-product3.jpg',
-    description: 'Удобные шорты из плотного хлопка. Два боковых и один задний карман. Идеальны для лета.',
-    category: 'ШТАНЫ'
-  },
-  { 
-    id: 'o4', 
-    name: 'Худи OMNIA', 
-    brand: 'OMNIA', 
-    price: 6490, 
-    image: '/images/omnia-product4.jpg',
-    description: 'Худи с принтом. Тяжелый хлопок 400г/м², капюшон на шнурке, удобные карманы.',
-    category: 'СВИТЕРЫ'
-  },
-  { 
-    id: 'o5', 
-    name: 'Джинсы OMNIA', 
-    brand: 'OMNIA', 
-    price: 5990, 
-    image: '/images/omnia-product5.jpg',
-    description: 'Прямые джинсы из плотного хлопка. Темно-синий цвет, классическая посадка, пять карманов.',
-    category: 'ШТАНЫ'
-  },
-  { 
-    id: 'o6', 
-    name: 'Кепка OMNIA', 
-    brand: 'OMNIA', 
-    price: 2490, 
-    image: '/images/omnia-product6.jpg',
-    description: 'Хлопковая кепка с вышитым логотипом. Регулируемый размер, универсальный дизайн.',
-    category: 'АКССЕСУАРЫ'
-  },
-   { 
-    id: 'o7', 
-    name: 'Джинсы OMNIA', 
-    brand: 'OMNIA', 
-    price: 5990, 
-    image: '/images/omnia-product.jpg',
-    description: '',
-    category: ''
-  },
-   { 
-    id: 'o8', 
-    name: 'Джинсы OMNIA', 
-    brand: 'OMNIA', 
-    price: 5990, 
-    image: '/images/omnia-product.jpg',
-    description: '',
-    category: ''
-  },
-   { 
-    id: 'o9', 
-    name: 'Джинсы OMNIA', 
-    brand: 'OMNIA', 
-    price: 5990, 
-    image: '/images/omnia-product.jpg',
-    description: '',
-    category: ''
-  },
-];
+const omniaProducts = allProducts.filter(p => p.brand === 'OMNIA');
 
 export const OmniaPage: React.FC = () => {
   const navigate = useNavigate();
@@ -110,13 +29,17 @@ export const OmniaPage: React.FC = () => {
     }
   });
 
+  const handleProductClick = (productId: string) => {
+    navigate(`/product/${productId}`);
+  };
+
   return (
     <>
       <Header 
         title="OMNIA" 
         subtitle="" 
-        backgroundImage="/images/omnia-header.jpg"
-   
+        backgroundImage="/images-main/omnia-header.jpg"
+        showOverlay={false}
       />
       
       <main className="main-content">
@@ -134,8 +57,6 @@ export const OmniaPage: React.FC = () => {
           Назад к брендам
         </a>
 
-       
-
         <div className="sort-section">
           <div className="sort-container">
             <button 
@@ -143,7 +64,7 @@ export const OmniaPage: React.FC = () => {
               onClick={() => setShowSortMenu(!showSortMenu)}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L3.5 11.293V2.5zm5 0a.5.5 0 0 1 1 0v8.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L8.5 11.293V2.5zm5 0a.5.5 0 0 1 1 0v8.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L13.5 11.293V2.5z"/>
+                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L3.5 11.293V2.5z"/>
               </svg>
               Сортировка
               <span className="sort-current">
@@ -210,9 +131,12 @@ export const OmniaPage: React.FC = () => {
 
         <div className="brand-products-grid">
           {sortedProducts.map(product => (
-            <div key={product.id} className="brand-product-card">
-              <div className="brand-product-image">
-                <img src={product.image} alt={product.name} />
+            <div key={product.id} className="brand-product-card" onClick={() => handleProductClick(product.id)}>
+              <div className="brand-product-image-wrapper">
+                <FavoriteButton product={product} className="product-favorite-btn" />
+                <div className="brand-product-image">
+                  <img src={product.image} alt={product.name} />
+                </div>
               </div>
               <div className="brand-product-info">
                 <p className="brand-product-description">{product.description}</p>
