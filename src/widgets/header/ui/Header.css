@@ -23,6 +23,24 @@
   z-index: 100;
 }
 
+<<<<<<< HEAD
+=======
+.nav-icons svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.9;
+}
+
+.nav-icons svg:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  fill: rgba(18, 35, 93, 1);
+}
+
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 .icon-wrapper {
   position: relative;
   cursor: pointer;
@@ -163,7 +181,10 @@
 .menu-item.logout:hover {
   background: #ffebee;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 .menu-badge {
   margin-left: auto;
   background: rgba(18, 35, 93, 1);
@@ -173,6 +194,7 @@
   padding: 2px 8px;
   border-radius: 20px;
 }
+<<<<<<< HEAD
 .header-only-nav {
   height: 80px !important;
   background: white !important;
@@ -210,6 +232,21 @@
   z-index: 1;
 }
 
+=======
+.header-text-overlay {
+  position: absolute;
+  width: 530px;
+  height: 33px;
+  left: 50%;
+  top: calc(50% + 60px);
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.36);
+  filter: blur(2.25px);
+  border-radius: 7px;
+  z-index: 1;
+}
+
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 .header-title {
   position: absolute;
   top: 50%;
@@ -292,6 +329,7 @@
   
   .user-name {
     font-size: 13px;
+<<<<<<< HEAD
   }
   
   .badge {
@@ -300,6 +338,8 @@
     min-width: 16px;
     height: 16px;
     font-size: 10px;
+=======
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   }
 }
 
@@ -316,6 +356,7 @@
   .user-menu {
     min-width: 160px;
     max-width: 200px;
+<<<<<<< HEAD
   }
   
   .badge {
@@ -324,5 +365,7 @@
     min-width: 14px;
     height: 14px;
     font-size: 9px;
+=======
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   }
 }

@@ -12,16 +12,24 @@ interface HeaderProps {
   title?: string;
   subtitle?: string;
   backgroundImage?: string;
+<<<<<<< HEAD
   showOverlay?: boolean;
   showOnlyNav?: boolean;
+=======
+  showOverlay?: boolean; 
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 }
 
 export const Header: React.FC<HeaderProps> = ({ 
   title = 'FINDS', 
   subtitle = 'Место, где начинаются новые открытия',
   backgroundImage = '/images-main/header-img.png',
+<<<<<<< HEAD
   showOverlay,
   showOnlyNav = false
+=======
+  showOverlay
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,7 +44,11 @@ export const Header: React.FC<HeaderProps> = ({
   const [showSearch, setShowSearch] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
 
+<<<<<<< HEAD
   const shouldShowOverlay = location.pathname === '/' && showOverlay !== false && !showOnlyNav;
+=======
+  const shouldShowOverlay = location.pathname === '/' && showOverlay !== false;
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -63,7 +75,15 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   const handleFavoritesClick = () => {
+<<<<<<< HEAD
     navigate('/profile?tab=favorites');
+=======
+    if (!user) {
+      navigate('/profile?tab=favorites');
+    } else {
+      navigate('/profile?tab=favorites');
+    }
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   };
 
   return (
@@ -73,7 +93,10 @@ export const Header: React.FC<HeaderProps> = ({
         
         <nav className="nav-icons">
           <div className="icon-wrapper" onClick={handleFavoritesClick}>
+<<<<<<< HEAD
             {favoritesCount > 0 && <span className="badge">{favoritesCount}</span>}
+=======
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
               <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
             </svg>

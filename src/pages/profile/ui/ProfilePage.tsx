@@ -5,7 +5,10 @@ import { Footer } from '../../../widgets/footer/ui/Footer';
 import { useAuth } from '../../../app/providers/AuthProvider';
 import { useFavorites } from '../../../app/providers/FavoritesProvider';
 import { useCart } from '../../../app/providers/CartProvider';
+<<<<<<< HEAD
 import { useOrders } from '../../../app/providers/OrdersProvider';
+=======
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 import { AddToCartButton } from '../../../features/add-to-cart/ui/AddToCartButton';
 import './ProfilePage.css';
 
@@ -13,6 +16,7 @@ export const ProfilePage: React.FC = () => {
   const { user, logout } = useAuth();
   const { favorites, removeFromFavorites } = useFavorites();
   const { addToCart } = useCart();
+<<<<<<< HEAD
   const { orders } = useOrders();
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,6 +45,12 @@ export const ProfilePage: React.FC = () => {
     }
   }, []);
 
+=======
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isEditing, setIsEditing] = useState(false);
+  
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   const getTabFromUrl = () => {
     const params = new URLSearchParams(location.search);
     return params.get('tab') || 'profile';
@@ -53,6 +63,7 @@ export const ProfilePage: React.FC = () => {
   }, [location.search]);
 
   const [formData, setFormData] = useState({
+<<<<<<< HEAD
     firstName: user?.name?.split(' ')[0] || '',
     lastName: user?.name?.split(' ')[1] || '',
     birthDate: '1990-01-01',
@@ -60,6 +71,15 @@ export const ProfilePage: React.FC = () => {
     city: '',
     street: '',
     house: '',
+=======
+    firstName: 'Иван',
+    lastName: 'Иванов',
+    birthDate: '1990-01-01',
+    gender: 'male',
+    city: 'Москва',
+    street: 'Тверская',
+    house: '15',
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
     phone: '+7(999)-123-45-67'
   });
 
@@ -68,11 +88,14 @@ export const ProfilePage: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+<<<<<<< HEAD
   const handleSellerInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setSellerForm(prev => ({ ...prev, [name]: value }));
   };
 
+=======
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   const handleGenderChange = (gender: string) => {
     setFormData(prev => ({ ...prev, gender }));
   };
@@ -99,6 +122,7 @@ export const ProfilePage: React.FC = () => {
     removeFromFavorites(product.id);
   };
 
+<<<<<<< HEAD
   const handleSellerSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -119,6 +143,8 @@ export const ProfilePage: React.FC = () => {
     alert('Ваша заявка отправлена на рассмотрение!');
   };
 
+=======
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   const renderContent = () => {
     switch(activeTab) {
       case 'profile':
@@ -288,10 +314,60 @@ export const ProfilePage: React.FC = () => {
             )}
           </div>
         );
+<<<<<<< HEAD
+=======
+ case 'favorites':
+  return (
+    <div className="profile-section">
+      <h2 className="section-title">Избранное</h2>
+      {favorites.length === 0 ? (
+        <div className="empty-state">
+          <svg width="60" height="60" viewBox="0 0 16 16" fill="#ccc">
+            <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+          </svg>
+          <p>В избранном пока ничего нет</p>
+          <button className="home-link" onClick={handleGoHome}>
+            Перейти к покупкам
+          </button>
+        </div>
+      ) : (
+        <div className="favorites-grid">
+          {favorites.map(product => (
+            <div key={product.id} className="favorite-card">
+              <div className="favorite-image">
+                <img src={product.image} alt={product.name} />
+              </div>
+              <div className="favorite-info">
+                <div className="favorite-details">
+                  <h3 className="favorite-brand">{product.brand}</h3>
+                  <p className="favorite-name">{product.name}</p>
+                </div>
+                <p className="favorite-price">{product.price.toLocaleString()} ₽</p>
+                <button 
+                  className="add-to-cart-favorite"
+                  onClick={() => handleAddToCartFromFavorites(product)}
+                >
+                  В корзину
+                </button>
+              </div>
+              <button 
+                className="remove-favorite"
+                onClick={() => removeFromFavorites(product.id)}
+              >
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
       case 'orders':
         return (
           <div className="profile-section">
             <h2 className="section-title">Мои заказы</h2>
+<<<<<<< HEAD
             {orders.length === 0 ? (
               <div className="empty-state">
                 <svg width="80" height="80" viewBox="0 0 24 24" fill="#ccc">
@@ -347,6 +423,14 @@ export const ProfilePage: React.FC = () => {
                 ))}
               </div>
             )}
+=======
+            <div className="empty-state">
+              <p>У вас пока нет заказов</p>
+              <button className="home-link" onClick={handleGoHome}>
+                Перейти к покупкам
+              </button>
+            </div>
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
           </div>
         );
       case 'notifications':
@@ -358,6 +442,7 @@ export const ProfilePage: React.FC = () => {
             </div>
           </div>
         );
+<<<<<<< HEAD
       case 'favorites':
         return (
           <div className="profile-section">
@@ -402,10 +487,13 @@ export const ProfilePage: React.FC = () => {
             )}
           </div>
         );
+=======
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
       case 'seller':
         return (
           <div className="profile-section">
             <h2 className="section-title">Стать продавцом</h2>
+<<<<<<< HEAD
             
             {sellerStatus === 'pending' && (
               <div className="seller-status pending">
@@ -581,6 +669,11 @@ export const ProfilePage: React.FC = () => {
                 </button>
               </form>
             )}
+=======
+            <div className="empty-state">
+              <p>Заполните форму чтобы стать продавцом</p>
+            </div>
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
           </div>
         );
       default:

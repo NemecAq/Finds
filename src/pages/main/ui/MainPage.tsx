@@ -46,6 +46,57 @@ const brands: Brand[] = [
   }
 ];
 
+<<<<<<< HEAD
+=======
+const products: Product[] = [
+  { 
+    id: '1', 
+    name: 'Штаны', 
+    brand: 'KODEX', 
+    price: 4990, 
+    image: '/images-main/popular1.png',
+    description: 'Удобные штаны для повседневной носки',
+    category: 'ШТАНЫ'
+  },
+  { 
+    id: '2', 
+    name: 'Футболка', 
+    brand: 'FRAGS', 
+    price: 6490, 
+    image: '/images-main/popular2.png',
+    description: 'Хлопковая футболка оверсайз',
+    category: 'ФУТБОЛКИ'
+  },
+  { 
+    id: '3', 
+    name: 'Джинсы', 
+    brand: 'OMNIA', 
+    price: 5990, 
+    image: '/images-main/popular3.png',
+    description: 'Классические джинсы прямого кроя',
+    category: 'ШТАНЫ'
+  },
+  { 
+    id: '4', 
+    name: 'Худи', 
+    brand: 'GARM', 
+    price: 2490, 
+    image: '/images-main/popular4.png',
+    description: 'Теплое худи с капюшоном',
+    category: 'СВИТЕРЫ'
+  },
+  { 
+    id: '5', 
+    name: 'Футболка', 
+    brand: 'NOSKVA', 
+    price: 3990, 
+    image: '/images-main/popular5.png',
+    description: 'Базовая футболка из органического хлопка',
+    category: 'ФУТБОЛКИ'
+  }
+];
+
+>>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 export const MainPage: React.FC = () => {
   const navigate = useNavigate();
 
