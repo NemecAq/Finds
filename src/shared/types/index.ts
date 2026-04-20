@@ -3,8 +3,8 @@ export interface Product {
   name: string;
   brand: string;
   price: number;
-  description: string;
   image: string;
+  description: string;
   category: string;
 }
 
@@ -22,6 +22,7 @@ export interface Category {
   name: string;
   image: string;
 }
+
 export interface Order {
   id: string;
   date: string;

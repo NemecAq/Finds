@@ -5,10 +5,7 @@ import { Footer } from '../../../widgets/footer/ui/Footer';
 import { useAuth } from '../../../app/providers/AuthProvider';
 import { useFavorites } from '../../../app/providers/FavoritesProvider';
 import { useCart } from '../../../app/providers/CartProvider';
-<<<<<<< HEAD
 import { useOrders } from '../../../app/providers/OrdersProvider';
-=======
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 import { AddToCartButton } from '../../../features/add-to-cart/ui/AddToCartButton';
 import './ProfilePage.css';
 
@@ -16,41 +13,11 @@ export const ProfilePage: React.FC = () => {
   const { user, logout } = useAuth();
   const { favorites, removeFromFavorites } = useFavorites();
   const { addToCart } = useCart();
-<<<<<<< HEAD
   const { orders } = useOrders();
   const navigate = useNavigate();
   const location = useLocation();
   const [isEditing, setIsEditing] = useState(false);
-  const [sellerForm, setSellerForm] = useState({
-    shopName: '',
-    shopDescription: '',
-    category: '',
-    phone: '',
-    inn: '',
-    address: '',
-    bankName: '',
-    bik: '',
-    accountNumber: ''
-  });
-  const [isSellerFormSubmitted, setIsSellerFormSubmitted] = useState(false);
-  const [sellerStatus, setSellerStatus] = useState<'none' | 'pending' | 'approved' | 'rejected'>('none');
-
-  useEffect(() => {
-    const savedSeller = localStorage.getItem('sellerApplication');
-    if (savedSeller) {
-      const data = JSON.parse(savedSeller);
-      setSellerForm(data.form);
-      setSellerStatus(data.status);
-      setIsSellerFormSubmitted(data.status !== 'none');
-    }
-  }, []);
-
-=======
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [isEditing, setIsEditing] = useState(false);
   
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   const getTabFromUrl = () => {
     const params = new URLSearchParams(location.search);
     return params.get('tab') || 'profile';
@@ -63,24 +30,14 @@ export const ProfilePage: React.FC = () => {
   }, [location.search]);
 
   const [formData, setFormData] = useState({
-<<<<<<< HEAD
-    firstName: user?.name?.split(' ')[0] || '',
-    lastName: user?.name?.split(' ')[1] || '',
-    birthDate: '1990-01-01',
-    gender: 'male',
+    firstName: '',
+    lastName: '',
+    birthDate: '',
+    gender: '',
     city: '',
     street: '',
     house: '',
-=======
-    firstName: 'Иван',
-    lastName: 'Иванов',
-    birthDate: '1990-01-01',
-    gender: 'male',
-    city: 'Москва',
-    street: 'Тверская',
-    house: '15',
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
-    phone: '+7(999)-123-45-67'
+    phone: ''
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,14 +45,6 @@ export const ProfilePage: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-<<<<<<< HEAD
-  const handleSellerInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setSellerForm(prev => ({ ...prev, [name]: value }));
-  };
-
-=======
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   const handleGenderChange = (gender: string) => {
     setFormData(prev => ({ ...prev, gender }));
   };
@@ -122,29 +71,6 @@ export const ProfilePage: React.FC = () => {
     removeFromFavorites(product.id);
   };
 
-<<<<<<< HEAD
-  const handleSellerSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!sellerForm.shopName || !sellerForm.shopDescription || !sellerForm.category || !sellerForm.phone || !sellerForm.inn) {
-      alert('Пожалуйста, заполните все обязательные поля');
-      return;
-    }
-
-    const application = {
-      form: sellerForm,
-      status: 'pending',
-      date: new Date().toISOString()
-    };
-    
-    localStorage.setItem('sellerApplication', JSON.stringify(application));
-    setSellerStatus('pending');
-    setIsSellerFormSubmitted(true);
-    alert('Ваша заявка отправлена на рассмотрение!');
-  };
-
-=======
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
   const renderContent = () => {
     switch(activeTab) {
       case 'profile':
@@ -314,8 +240,6 @@ export const ProfilePage: React.FC = () => {
             )}
           </div>
         );
-<<<<<<< HEAD
-=======
  case 'favorites':
   return (
     <div className="profile-section">
@@ -362,77 +286,67 @@ export const ProfilePage: React.FC = () => {
       )}
     </div>
   );
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
       case 'orders':
-        return (
-          <div className="profile-section">
-            <h2 className="section-title">Мои заказы</h2>
-<<<<<<< HEAD
-            {orders.length === 0 ? (
-              <div className="empty-state">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="#ccc">
-                  <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-                </svg>
-                <p>У вас пока нет заказов</p>
-                <button className="home-link" onClick={handleGoHome}>
-                  Перейти к покупкам
-                </button>
+  return (
+    <div className="profile-section">
+      <h2 className="section-title">Мои заказы</h2>
+      {orders.length === 0 ? (
+        <div className="empty-state">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="#ccc">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+          <p>У вас пока нет заказов</p>
+          <button className="home-link" onClick={handleGoHome}>
+            Перейти к покупкам
+          </button>
+        </div>
+      ) : (
+        <div className="orders-list">
+          {orders.map(order => (
+            <div key={order.id} className="order-card">
+              <div className="order-header">
+                <div className="order-info">
+                  <span className="order-number">Заказ #{order.id.slice(-6)}</span>
+                  <span className="order-date">{new Date(order.date).toLocaleDateString('ru-RU')}</span>
+                </div>
+                <div className={`order-status status-${order.status}`}>
+                  {order.status === 'pending' && 'Ожидает оплаты'}
+                  {order.status === 'processing' && 'В обработке'}
+                  {order.status === 'shipped' && 'Отправлен'}
+                  {order.status === 'delivered' && 'Доставлен'}
+                  {order.status === 'cancelled' && 'Отменен'}
+                </div>
               </div>
-            ) : (
-              <div className="orders-list">
-                {orders.map(order => (
-                  <div key={order.id} className="order-card">
-                    <div className="order-header">
-                      <div className="order-info">
-                        <span className="order-number">Заказ #{order.id.slice(-6)}</span>
-                        <span className="order-date">{new Date(order.date).toLocaleDateString('ru-RU')}</span>
-                      </div>
-                      <div className={`order-status status-${order.status}`}>
-                        {order.status === 'pending' && 'Ожидает оплаты'}
-                        {order.status === 'processing' && 'В обработке'}
-                        {order.status === 'shipped' && 'Отправлен'}
-                        {order.status === 'delivered' && 'Доставлен'}
-                        {order.status === 'cancelled' && 'Отменен'}
-                      </div>
-                    </div>
-                    <div className="order-items">
-                      {order.items.slice(0, 3).map(item => (
-                        <div key={item.id} className="order-item">
-                          <img src={item.image} alt={item.name} className="order-item-image" />
-                          <div className="order-item-info">
-                            <div className="order-item-name">{item.name}</div>
-                            <div className="order-item-brand">{item.brand}</div>
-                            <div className="order-item-price">{item.price.toLocaleString()} ₽</div>
-                          </div>
-                        </div>
-                      ))}
-                      {order.items.length > 3 && (
-                        <div className="order-more">и еще {order.items.length - 3} товаров</div>
-                      )}
-                    </div>
-                    <div className="order-footer">
-                      <div className="order-total">
-                        <span>Итого:</span>
-                        <span>{order.total.toLocaleString()} ₽</span>
-                      </div>
-                      <button className="order-details-btn" onClick={() => navigate(`/order/${order.id}`)}>
-                        Подробнее
-                      </button>
+              <div className="order-items">
+                {order.items.slice(0, 3).map(item => (
+                  <div key={item.id} className="order-item">
+                    <img src={item.image} alt={item.name} className="order-item-image" />
+                    <div className="order-item-info">
+                      <div className="order-item-name">{item.name}</div>
+                      <div className="order-item-brand">{item.brand}</div>
+                      <div className="order-item-price">{item.price.toLocaleString()} ₽</div>
                     </div>
                   </div>
                 ))}
+                {order.items.length > 3 && (
+                  <div className="order-more">и еще {order.items.length - 3} товаров</div>
+                )}
               </div>
-            )}
-=======
-            <div className="empty-state">
-              <p>У вас пока нет заказов</p>
-              <button className="home-link" onClick={handleGoHome}>
-                Перейти к покупкам
-              </button>
+              <div className="order-footer">
+                <div className="order-total">
+                  <span>Итого:</span>
+                  <span>{order.total.toLocaleString()} ₽</span>
+                </div>
+                <button className="order-details-btn" onClick={() => navigate(`/order/${order.id}`)}>
+                  Подробнее
+                </button>
+              </div>
             </div>
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
-          </div>
-        );
+          ))}
+        </div>
+      )}
+    </div>
+  );
       case 'notifications':
         return (
           <div className="profile-section">
@@ -442,238 +356,13 @@ export const ProfilePage: React.FC = () => {
             </div>
           </div>
         );
-<<<<<<< HEAD
-      case 'favorites':
-        return (
-          <div className="profile-section">
-            <h2 className="section-title">Избранное</h2>
-            {favorites.length === 0 ? (
-              <div className="empty-state">
-                <svg width="80" height="80" viewBox="0 0 16 16" fill="#ccc">
-                  <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                </svg>
-                <p>В избранном пока ничего нет</p>
-                <button className="home-link" onClick={handleGoHome}>
-                  Перейти к покупкам
-                </button>
-              </div>
-            ) : (
-              <div className="favorites-grid">
-                {favorites.map(product => (
-                  <div key={product.id} className="favorite-card">
-                    <div className="favorite-image">
-                      <img src={product.image} alt={product.name} />
-                      <button 
-                        className="remove-favorite"
-                        onClick={() => removeFromFavorites(product.id)}
-                      >
-                        ×
-                      </button>
-                    </div>
-                    <div className="favorite-info">
-                      <h3 className="favorite-brand">{product.brand}</h3>
-                      <p className="favorite-name">{product.name}</p>
-                      <p className="favorite-price">{product.price.toLocaleString()} ₽</p>
-                      <button 
-                        className="add-to-cart-favorite"
-                        onClick={() => handleAddToCartFromFavorites(product)}
-                      >
-                        В корзину
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        );
-=======
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
       case 'seller':
         return (
           <div className="profile-section">
             <h2 className="section-title">Стать продавцом</h2>
-<<<<<<< HEAD
-            
-            {sellerStatus === 'pending' && (
-              <div className="seller-status pending">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="#f39c12">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                </svg>
-                <h3>Заявка на рассмотрении</h3>
-                <p>Ваша заявка отправлена. Мы свяжемся с вами в течение 3 рабочих дней.</p>
-              </div>
-            )}
-            
-            {sellerStatus === 'approved' && (
-              <div className="seller-status approved">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="#4caf50">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                </svg>
-                <h3>Поздравляем! Вы стали продавцом</h3>
-                <p>Теперь вы можете добавлять свои товары на платформу.</p>
-                <button className="add-product-btn">Добавить товар</button>
-              </div>
-            )}
-            
-            {sellerStatus === 'rejected' && (
-              <div className="seller-status rejected">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="#f44336">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                </svg>
-                <h3>Заявка отклонена</h3>
-                <p>К сожалению, ваша заявка не прошла проверку. Вы можете подать заявку снова.</p>
-                <button className="retry-btn" onClick={() => {
-                  setIsSellerFormSubmitted(false);
-                  setSellerStatus('none');
-                  setSellerForm({
-                    shopName: '',
-                    shopDescription: '',
-                    category: '',
-                    phone: '',
-                    inn: '',
-                    address: '',
-                    bankName: '',
-                    bik: '',
-                    accountNumber: ''
-                  });
-                  localStorage.removeItem('sellerApplication');
-                }}>Подать заявку снова</button>
-              </div>
-            )}
-            
-            {!isSellerFormSubmitted && sellerStatus === 'none' && (
-              <form className="seller-form" onSubmit={handleSellerSubmit}>
-                <div className="form-section">
-                  <h3>Информация о магазине</h3>
-                  <div className="form-group">
-                    <label>Название магазина *</label>
-                    <input
-                      type="text"
-                      name="shopName"
-                      value={sellerForm.shopName}
-                      onChange={handleSellerInputChange}
-                      placeholder="Введите название магазина"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Описание магазина *</label>
-                    <textarea
-                      name="shopDescription"
-                      value={sellerForm.shopDescription}
-                      onChange={handleSellerInputChange}
-                      placeholder="Расскажите о своем магазине, ассортименте"
-                      rows={4}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Категория товаров *</label>
-                    <select
-                      name="category"
-                      value={sellerForm.category}
-                      onChange={handleSellerInputChange}
-                      required
-                    >
-                      <option value="">Выберите категорию</option>
-                      <option value="ФУТБОЛКИ">Футболки</option>
-                      <option value="ЗИПКИ">Зипки</option>
-                      <option value="СВИТЕРЫ">Свитеры</option>
-                      <option value="ШТАНЫ">Штаны</option>
-                      <option value="КУРТКИ">Куртки</option>
-                      <option value="АКССЕСУАРЫ">Аксессуары</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="form-section">
-                  <h3>Контактная информация</h3>
-                  <div className="form-group">
-                    <label>Телефон *</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={sellerForm.phone}
-                      onChange={handleSellerInputChange}
-                      placeholder="+7 (___) ___-__-__"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>ИНН *</label>
-                    <input
-                      type="text"
-                      name="inn"
-                      value={sellerForm.inn}
-                      onChange={handleSellerInputChange}
-                      placeholder="ИНН"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Юридический адрес</label>
-                    <input
-                      type="text"
-                      name="address"
-                      value={sellerForm.address}
-                      onChange={handleSellerInputChange}
-                      placeholder="Город, улица, дом"
-                    />
-                  </div>
-                </div>
-
-                <div className="form-section">
-                  <h3>Банковские реквизиты</h3>
-                  <div className="form-group">
-                    <label>Название банка</label>
-                    <input
-                      type="text"
-                      name="bankName"
-                      value={sellerForm.bankName}
-                      onChange={handleSellerInputChange}
-                      placeholder="Название банка"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>БИК</label>
-                    <input
-                      type="text"
-                      name="bik"
-                      value={sellerForm.bik}
-                      onChange={handleSellerInputChange}
-                      placeholder="БИК"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Расчетный счет</label>
-                    <input
-                      type="text"
-                      name="accountNumber"
-                      value={sellerForm.accountNumber}
-                      onChange={handleSellerInputChange}
-                      placeholder="Расчетный счет"
-                    />
-                  </div>
-                </div>
-
-                <div className="seller-agreement">
-                  <input type="checkbox" id="agreement" required />
-                  <label htmlFor="agreement">
-                    Я согласен с условиями оферты и подтверждаю достоверность предоставленных данных
-                  </label>
-                </div>
-
-                <button type="submit" className="submit-seller-btn">
-                  Отправить заявку
-                </button>
-              </form>
-            )}
-=======
             <div className="empty-state">
               <p>Заполните форму чтобы стать продавцом</p>
             </div>
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
           </div>
         );
       default:

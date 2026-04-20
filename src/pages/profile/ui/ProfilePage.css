@@ -530,7 +530,6 @@
   background: rgba(18, 35, 93, 0.85);
   transform: translateY(-1px);
 }
-<<<<<<< HEAD
 .seller-form {
   margin-top: 20px;
 }
@@ -678,9 +677,6 @@
 .retry-btn:hover {
   background: rgba(18, 35, 93, 0.85);
 }
-=======
-
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 @media (max-width: 768px) {
   .favorite-card {
     flex-wrap: wrap;

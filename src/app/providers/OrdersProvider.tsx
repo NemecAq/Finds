@@ -21,20 +21,20 @@ export const useOrders = () => {
 };
 
 export const OrdersProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (isAuthenticated && user) {
+    if (!authLoading && isAuthenticated && user) {
       loadOrders();
-    } else {
+    } else if (!authLoading && !isAuthenticated) {
       const savedOrders = localStorage.getItem('orders');
       if (savedOrders) {
         setOrders(JSON.parse(savedOrders));
       }
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, authLoading, user]);
 
   const loadOrders = async () => {
     if (!user) return;

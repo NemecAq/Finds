@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product } from '../../shared/types';
-import { cartApi, CartItem } from '../../shared/api/cart';
+import { cartApi } from '../../shared/api/cart';
 import { useAuth } from './AuthProvider';
 
 interface CartContextType {

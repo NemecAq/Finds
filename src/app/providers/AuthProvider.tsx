@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { authApi, LoginRequest, RegisterRequest } from '../../shared/api/auth';
+import { authApi } from '../../shared/api/auth';
 import { userApi } from '../../shared/api/user';
 import { apiClient } from '../../shared/api/apiClient';
 
@@ -45,6 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             name: profile.name,
             email: profile.email,
             roles: profile.roles,
+            avatar: '/images/default-avatar.jpg'
           });
         } catch (error) {
           console.error('Failed to load user:', error);
@@ -60,7 +61,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const response = await authApi.login({ email, password });
       apiClient.setToken(response.token);
-      setUser(response.user);
+      setUser({
+        id: response.user.id,
+        name: response.user.name,
+        email: response.user.email,
+        roles: response.user.roles,
+        avatar: '/images/default-avatar.jpg'
+      });
       return true;
     } catch (error) {
       console.error('Login failed:', error);
@@ -83,7 +90,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const response = await authApi.register({ name, email, password });
       apiClient.setToken(response.token);
-      setUser(response.user);
+      setUser({
+        id: response.user.id,
+        name: response.user.name,
+        email: response.user.email,
+        roles: response.user.roles,
+        avatar: '/images/default-avatar.jpg'
+      });
       return true;
     } catch (error) {
       console.error('Registration failed:', error);
@@ -92,19 +105,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   if (loading) {
-    return (
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh',
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '18px',
-        color: '#333'
-      }}>
-        Загрузка...
-      </div>
-    );
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Загрузка...</div>;
   }
 
   return (

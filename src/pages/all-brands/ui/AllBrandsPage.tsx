@@ -4,7 +4,7 @@ import { Footer } from '../../../widgets/footer/ui/Footer';
 import { BrandCard } from '../../../entities/brand/ui/BrandCard';
 import { useNavigate } from 'react-router-dom';
 import { Brand } from '../../../shared/types';
-import './AllBrandsPage.css';
+import './AllBrandsPage.css'
 
 const allBrands: Brand[] = [
   { 

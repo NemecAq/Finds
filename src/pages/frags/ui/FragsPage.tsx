@@ -7,57 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { allProducts } from '../../../shared/data/products';
 import './FragsPage.css';
 
-<<<<<<< HEAD
 const fragsProducts = allProducts.filter(p => p.brand === 'FRAGS');
-=======
-const fragsProducts: Product[] = [
-  { 
-    id: 'f1', 
-    name: 'Футболка FRAGS', 
-    brand: 'FRAGS', 
-    price: 4990, 
-    image: '/images-main/frags-product1.jpg',
-    description: 'FRAGS — тёмная эстетика, собранная в форму. Одежда для тех, кто говорит за себя без слов. Премиальный хлопок, идеальная посадка.',
-    category: 'ФУТБОЛКИ'
-  },
-  { 
-    id: 'f2', 
-    name: 'Худи FRAGS', 
-    brand: 'FRAGS', 
-    price: 6490, 
-    image: '/images-main/frags-product2.jpg',
-    description: 'Худи с минималистичным дизайном. Тяжелый хлопок 400г/м², капюшон на шнурке, удобные карманы.',
-    category: 'СВИТЕРЫ'
-  },
-  { 
-    id: 'f3', 
-    name: 'Джинсы FRAGS', 
-    brand: 'FRAGS', 
-    price: 5990, 
-    image: '/images-main/frags-product3.jpg',
-    description: 'Прямые джинсы из плотного хлопка. Темно-синий цвет, классическая посадка, пять карманов.',
-    category: 'ШТАНЫ'
-  },
-  { 
-    id: 'f4', 
-    name: 'Кепка FRAGS', 
-    brand: 'FRAGS', 
-    price: 2990, 
-    image: '/images-main/frags-product4.jpg',
-    description: 'Хлопковая кепка с вышитым логотипом. Регулируемый размер.',
-    category: 'АКССЕСУАРЫ'
-  },
-  { 
-    id: 'f5', 
-    name: 'Шорты FRAGS', 
-    brand: 'FRAGS', 
-    price: 3990, 
-    image: '/images-main/frags-product5.jpg',
-    description: 'Удобные шорты из плотного хлопка. Два боковых кармана.',
-    category: 'ШТАНЫ'
-  }
-];
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 
 export const FragsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -89,11 +39,7 @@ export const FragsPage: React.FC = () => {
         title="FRAGS" 
         subtitle="" 
         backgroundImage="/images-main/frags-header.jpg"
-<<<<<<< HEAD
         showOverlay={false}
-=======
-        showOverlay={false} 
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
       />
       
       <main className="main-content">
@@ -111,14 +57,6 @@ export const FragsPage: React.FC = () => {
           Назад к брендам
         </a>
 
-<<<<<<< HEAD
-=======
-        <div className="brand-description">
-          <h1 className="page-title">FRAGS</h1>
-          <p className="brand-about">FRAGS — тёмная эстетика, собранная в форму. Это одежда для тех, кто говорит за себя без слов.</p>
-        </div>
-
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
         <div className="sort-section">
           <div className="sort-container">
             <button 
@@ -126,11 +64,7 @@ export const FragsPage: React.FC = () => {
               onClick={() => setShowSortMenu(!showSortMenu)}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-<<<<<<< HEAD
                 <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L3.5 11.293V2.5z"/>
-=======
-                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L3.5 11.293V2.5zm5 0a.5.5 0 0 1 1 0v8.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L8.5 11.293V2.5z"/>
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
               </svg>
               Сортировка
               <span className="sort-current">
@@ -197,11 +131,7 @@ export const FragsPage: React.FC = () => {
 
         <div className="brand-products-grid">
           {sortedProducts.map(product => (
-<<<<<<< HEAD
             <div key={product.id} className="brand-product-card" onClick={() => handleProductClick(product.id)}>
-=======
-            <div key={product.id} className="brand-product-card">
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
               <div className="brand-product-image-wrapper">
                 <FavoriteButton product={product} className="product-favorite-btn" />
                 <div className="brand-product-image">

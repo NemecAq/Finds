@@ -34,21 +34,20 @@ export const CheckoutPage: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  if (!isAuthenticated) {
-    navigate('/profile?tab=checkout');
-    return;
-  }
-  
-  if (cart.length === 0) {
-    alert('Корзина пуста');
-    return;
-  }
-  
-  try {
-    await addOrder({
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!isAuthenticated) {
+      navigate('/profile?tab=checkout');
+      return;
+    }
+    
+    if (cart.length === 0) {
+      alert('Корзина пуста');
+      return;
+    }
+    
+    addOrder({
       items: cart,
       total: totalWithDelivery,
       status: 'pending',
@@ -57,13 +56,10 @@ export const CheckoutPage: React.FC = () => {
       address: `${formData.city}, ${formData.address}`
     });
     
-    await clearCart();
     alert('Заказ оформлен!');
+    clearCart();
     navigate('/profile?tab=orders');
-  } catch (error) {
-    alert('Ошибка при оформлении заказа');
-  }
-};
+  };
 
   if (!isAuthenticated) {
     return (

@@ -70,6 +70,7 @@
 .popular-items-section {
   margin-top: 80px;
 }
+
 .categories-header {
   display: flex;
   justify-content: space-between;
@@ -79,18 +80,6 @@
   gap: 15px;
 }
 
-<<<<<<< HEAD
-.categories-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-=======
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 .all-categories-link {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
@@ -103,10 +92,7 @@
 .all-categories-link:hover {
   color: rgba(18, 35, 93, 1);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 5c0ad7cdce73cb99d468f0f9b95fe04e6c412adf
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
