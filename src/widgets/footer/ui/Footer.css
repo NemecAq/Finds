@@ -144,24 +144,24 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .footer-title {
     font-size: 18px;
     margin-bottom: 20px;
   }
-  
+
   .contact-item {
     font-size: 14px;
   }
-  
+
   .contact-link {
     font-size: 14px;
   }
-  
+
   .social-link {
     font-size: 14px;
   }
-  
+
   .footer-link {
     font-size: 14px;
   }

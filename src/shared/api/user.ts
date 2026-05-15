@@ -6,6 +6,8 @@ export interface UserProfile {
   name: string;
   roles: string[];
   createdAt: string;
+  brandId?: string;
+  shopId?: string;
 }
 
 export const userApi = {

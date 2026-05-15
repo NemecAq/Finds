@@ -4,7 +4,7 @@ import './Footer.css';
 
 export const Footer: React.FC = () => {
   const navigate = useNavigate();
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   const handleNavigation = (path: string) => {
     navigate(path);
@@ -31,16 +31,16 @@ export const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-        
+
         <div className="footer-section">
           <h3 className="footer-title">Социальные сети</h3>
           <div className="social-links">
             <a href="https://vk.com" className="social-link" target="_blank" rel="noopener noreferrer">VK</a>
             <a href="https://t.me" className="social-link" target="_blank" rel="noopener noreferrer">Telegram</a>
-
+            <a href="https://youtube.com" className="social-link" target="_blank" rel="noopener noreferrer">YouTube</a>
           </div>
         </div>
-        
+
         <div className="footer-section">
           <h3 className="footer-title">Информация</h3>
           <ul className="footer-links">
@@ -51,9 +51,9 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
       </div>
-      
+
       <div className="footer-bottom">
-        <p className="copyright">© {currentYear} Finds. Все права защищены.</p>
+        <p className="copyright">© {year} Finds. Все права защищены.</p>
       </div>
     </footer>
   );

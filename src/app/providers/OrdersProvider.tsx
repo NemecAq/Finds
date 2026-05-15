@@ -14,14 +14,12 @@ const OrdersContext = createContext<OrdersContextType | undefined>(undefined);
 
 export const useOrders = () => {
   const context = useContext(OrdersContext);
-  if (!context) {
-    throw new Error('useOrders must be used within an OrdersProvider');
-  }
+  if (!context) throw new Error('useOrders must be used within OrdersProvider');
   return context;
 };
 
 export const OrdersProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -30,9 +28,7 @@ export const OrdersProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       loadOrders();
     } else if (!authLoading && !isAuthenticated) {
       const savedOrders = localStorage.getItem('orders');
-      if (savedOrders) {
-        setOrders(JSON.parse(savedOrders));
-      }
+      if (savedOrders) setOrders(JSON.parse(savedOrders));
     }
   }, [isAuthenticated, authLoading, user]);
 

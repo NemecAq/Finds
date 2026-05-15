@@ -17,14 +17,12 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const useCart = () => {
   const context = useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
+  if (!context) throw new Error('useCart must be used within CartProvider');
   return context;
 };
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isAuthenticated, loading: authLoading } = useAuth();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
   const [cart, setCart] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -34,9 +32,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loadCart();
       } else {
         const savedCart = localStorage.getItem('cart');
-        if (savedCart) {
-          setCart(JSON.parse(savedCart));
-        }
+        if (savedCart) setCart(JSON.parse(savedCart));
       }
     }
   }, [isAuthenticated, authLoading]);

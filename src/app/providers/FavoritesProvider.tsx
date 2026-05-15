@@ -16,14 +16,12 @@ const FavoritesContext = createContext<FavoritesContextType | undefined>(undefin
 
 export const useFavorites = () => {
   const context = useContext(FavoritesContext);
-  if (!context) {
-    throw new Error('useFavorites must be used within a FavoritesProvider');
-  }
+  if (!context) throw new Error('useFavorites must be used within FavoritesProvider');
   return context;
 };
 
 export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isAuthenticated, loading: authLoading } = useAuth();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
   const [favorites, setFavorites] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -33,9 +31,7 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         loadFavorites();
       } else {
         const savedFavorites = localStorage.getItem('favorites');
-        if (savedFavorites) {
-          setFavorites(JSON.parse(savedFavorites));
-        }
+        if (savedFavorites) setFavorites(JSON.parse(savedFavorites));
       }
     }
   }, [isAuthenticated, authLoading]);
